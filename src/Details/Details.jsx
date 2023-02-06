@@ -15,7 +15,7 @@ export default function Details() {
   console.log(ID);
 
   const isFavorite = useSelector((state) =>
-    state.addToFavourite.find((favorite) => favorite.id === ID)
+    state.favorites.find((favorite) => favorite.id === ID)
   );
 
   const handleClick = () => {
