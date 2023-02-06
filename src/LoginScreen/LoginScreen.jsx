@@ -19,7 +19,7 @@ export default function LoginScreen() {
     e.preventDefault();
     let validate = validationLogin();
     console.log(validate);
-    if (validate.error.details.length > 0) {
+    if (validate.error) {
       setError(validate.error.details);
     } else {
       console.log("hi");

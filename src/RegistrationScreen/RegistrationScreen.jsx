@@ -22,7 +22,7 @@ export default function RegistrationScreen() {
     e.preventDefault();
     let validate = validationLogin();
     console.log(validate);
-    if (validate.error.details) {
+    if (validate.error) {
       setError(validate.error.details);
     } else {
     }
