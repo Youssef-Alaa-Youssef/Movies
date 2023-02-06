@@ -1,21 +1,34 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { LanguageContext } from "../LanguageContext/LanguageContext";
 
 export default function Pagination() {
   const [movie, setMovie] = useState([]);
-  useEffect(() => {
-    Movie();
-  }, []);
+  // useEffect(() => {
+  //   Movie();
+  // }, []);
+  const [language, setLanguage] = useContext(LanguageContext);
+  // const [movies, setMovies] = useState([]);
 
-  function Movie() {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=9b743af1d4fde1d65af33c40dcccce87&page=2"
-      )
-      .then((movie) => setMovie(movie.data.results))
-      .catch((err) => console.log(err));
-  }
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/popular?api_key=9b743af1d4fde1d65af33c40dcccce87&&page=2&language=${language}`
+      );
+      const data = await res.json();
+      setMovie(data.results);
+    }
+    fetchData();
+  }, [language]);
+  // function Movie() {
+  //   axios
+  //     .get(
+  //       "https://api.themoviedb.org/3/movie/popular?api_key=9b743af1d4fde1d65af33c40dcccce87&page=2"
+  //     )
+  //     .then((movie) => setMovie(movie.data.results))
+  //     .catch((err) => console.log(err));
+  // }
 
   return (
     <>

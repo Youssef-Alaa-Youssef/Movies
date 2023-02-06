@@ -5,6 +5,8 @@ import LanguageSelector from "../Languages/LanguageSelector";
 
 export default function Navbar() {
   const state = useSelector((state) => state);
+  const favorites = useSelector((state) => state.addToFavourite);
+
   return (
     <nav className="navbar navbar-light navbar-fixed-top mb-5">
       <div className="container-fluid">
@@ -13,7 +15,7 @@ export default function Navbar() {
         </Link>
         <div className="register">
           <Link className="btn btn-outline-light me-3" to="favourite">
-            Favourites {state.count}
+            Favourites {favorites.length}
           </Link>
           <Link className="btn btn-outline-light me-3" to="login">
             Login

@@ -1,6 +1,6 @@
-export const DeleteFavourite = (payload) => {
+export const DeleteFavourite = (movie) => {
   return {
     type: "DELETEFAVOURITE",
-    payload,
+    payload: movie,
   };
 };

@@ -1,7 +1,6 @@
-export const AddFavourite = (payload) => {
+export const AddFavourite = (movie) => {
   return {
     type: "ADDFAVOURITE",
-    payload,
+    payload: movie,
   };
 };
-

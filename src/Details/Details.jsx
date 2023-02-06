@@ -3,23 +3,32 @@ import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AddFavourite } from "../Action/AddFavourite";
+import { DeleteFavourite } from "../Action/DeleteFavourite";
 import { LanguageContext } from "../LanguageContext/LanguageContext";
 
 export default function Details() {
-  const [language, setLanguage] = useContext(LanguageContext);
-
-  const [detail, setDetails] = useState({});
+  const dispatch = useDispatch();
 
   const parm = useParams();
 
   const ID = parm.id;
   console.log(ID);
 
-  const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const addFavurite = () => {
-    dispatch(AddFavourite((state.count += 1)));
+  const isFavorite = useSelector((state) =>
+    state.addToFavourite.find((favorite) => favorite.id === ID)
+  );
+
+  const handleClick = () => {
+    if (isFavorite) {
+      dispatch(DeleteFavourite(ID));
+    } else {
+      dispatch(AddFavourite(ID));
+    }
   };
+
+  const [language, setLanguage] = useContext(LanguageContext);
+
+  const [detail, setDetails] = useState({});
 
   useEffect(() => {
     axios
@@ -62,7 +71,7 @@ export default function Details() {
               Count Rate : {detail.vote_count}
             </p>
             <button
-              onClick={() => addFavurite()}
+              onClick={() => handleClick()}
               className="btn btn-outline-light"
             >
               Add To Favuorite

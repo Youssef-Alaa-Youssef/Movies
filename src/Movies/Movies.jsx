@@ -65,7 +65,7 @@ export default function Movies() {
         <div className="row ">
           {movie.map((eachMovie) => {
             return (
-              <div className="col-lg-3" key={eachMovie.id}>
+              <div className="col-lg-3" key={eachMovie.id} movie={eachMovie}>
                 <Link
                   className="btn btn-outline-light mb-2"
                   to={`/detail/${eachMovie.id}`}
