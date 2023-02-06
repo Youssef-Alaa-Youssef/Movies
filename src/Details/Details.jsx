@@ -1,11 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { AddFavourite } from "../Action/AddFavourite";
+import { LanguageContext } from "../LanguageContext/LanguageContext";
 
 export default function Details() {
+  const [language, setLanguage] = useContext(LanguageContext);
+
   const [detail, setDetails] = useState({});
+
   const parm = useParams();
 
   const ID = parm.id;
@@ -20,12 +24,12 @@ export default function Details() {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${ID}?api_key=9b743af1d4fde1d65af33c40dcccce87`
+        `https://api.themoviedb.org/3/movie/${ID}?api_key=9b743af1d4fde1d65af33c40dcccce87&language=${language}`
       )
       .then((data) => setDetails(data.data))
 
       .catch((err) => console.log(err));
-  }, []);
+  }, [language]);
   return (
     <>
       <h1 className="App text-white">Details</h1>

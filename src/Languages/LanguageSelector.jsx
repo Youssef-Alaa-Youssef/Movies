@@ -15,8 +15,8 @@ function LanguageSelect() {
       onChange={handleChange}
     >
       <option value="en">English</option>
-      <option value="ar">Arabic</option>
-      <option value="de">German</option>
+      <option value="ar-AE">Arabic</option>
+      <option value="fr-FR">French</option>
     </select>
   );
 }

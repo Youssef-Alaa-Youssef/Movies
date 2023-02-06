@@ -37,6 +37,7 @@ export default function Movies() {
       .get("https://api.themoviedb.org/3/search/movie", {
         params: {
           api_key: "9b743af1d4fde1d65af33c40dcccce87",
+          language: language,
           query: Mamr,
         },
       })
